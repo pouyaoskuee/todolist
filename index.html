@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="stylesheet" href="style.css">
+    <title>todolist</title>
+</head>
+<body>
+
+<header>
+    <h1>todolist</h1>
+</header>
+
+<section class="section">
+    <div class="container">
+        <div class="add">
+
+            <form class="add__form">
+                <label class="hidden" for="task">Task</label>
+                <input id="task" type="text" class="input" placeholder="What needs to be done?">
+                <button type="submit" class="btn">Add</button>
+            </form>
+        </div>
+        <div class="select">
+            <select class="filter-todos" name="todos">
+                <option value="all">all</option>
+                <option value="completed">completed</option>
+                <option value="uncompleted">uncompleted</option>
+            </select>
+        </div>
+    </div>
+
+
+    <div class="list">
+        <form class="list__form">
+            <ul class="list__ul">
+<!--                <li class="list__li">-->
+<!--                    <p class="list__title">title</p>-->
+<!--                    <span class="list__data">1384/33/4/4</span>-->
+<!--                    <button class="check">&check;</button>-->
+<!--                    <button class="remove">&times;</button>-->
+<!--                </li>-->
+            </ul>
+        </form>
+    </div>
+</section>
+
+<script src="script.js"></script>
+</body>
+</html>
