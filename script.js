@@ -21,11 +21,11 @@ function addf(e){
 
     let result = '';
     todos.forEach((item) => {
-        result += `<li className="list__li">
-            <p className="list__title">${item.title}</p>
-            <span className="list__data">${(item.created_at).toLocaleDateString('fa-IR')}</span>
-            <button data-todo-id=${item.id} className="check">&check;</button>
-            <button data-todo-id=${item.id} className="remove">&times;</button>
+        result += `<li class="list__li">
+            <p class="list__title">${item.title}</p>
+            <span class="list__data">${(item.created_at).toLocaleDateString('fa-IR')}</span>
+            <button data-todo-id=${item.id} class="check">&check;</button>
+            <button data-todo-id=${item.id} class="remove">&times;</button>
         </li>`
     })
 
