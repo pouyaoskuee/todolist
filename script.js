@@ -1,11 +1,16 @@
-const todos=[]
+let todos=[]
 
 const todoinput = document.querySelector('.input');
 const todoform = document.querySelector('.add__form');
 const list = document.querySelector('.list__ul');
+const sort = document.querySelector('.filter-todos');
 
 
 todoform.addEventListener('submit', addf )
+sort.addEventListener('change', sortchange)
+
+
+
 
 
 function addf(e){
@@ -19,20 +24,90 @@ function addf(e){
     }
     todos.push(newtodos);
 
-    let result = '';
-    todos.forEach((item) => {
-        result += `<li class="list__li">
-            <p class="list__title">${item.title}</p>
-            <span class="list__data">${(item.created_at).toLocaleDateString('fa-IR')}</span>
-            <button data-todo-id=${item.id} class="check">&check;</button>
-            <button data-todo-id=${item.id} class="remove">&times;</button>
-        </li>`
-    })
 
-    list.innerHTML = result;
+
+    addtodom(todos)
+
+
     todoinput.value = '';
 
 }
+
+
+
+function addtodom(todos){
+    let result = '';
+    todos.forEach((item) => {
+        result += `<li class="list__li">
+            <p class="list__title ${item.isCompleted===true ? "completed":""} ">${item.title}</p>
+            <span class="list__data">${(item.created_at).toLocaleDateString('fa-IR')}</span>
+            <button type="button" data-todo-id=${item.id} class="check">&check;</button>
+            <button type="button" data-todo-id=${item.id} class="remove">&times;</button>
+        </li>`
+
+    })
+    list.innerHTML = result;
+    const remove=document.querySelectorAll('.remove');
+    remove.forEach((item)=>{
+        item.addEventListener('click', taskremove);
+    })
+
+    const check=document.querySelectorAll('.check');
+    check.forEach((item)=>{
+        item.addEventListener('click' , taskcheck)
+    })
+
+}
+
+
+
+function sortchange(e){
+    // e.preventDefault();
+    let content = e.target.value;
+    switch (content){
+        case 'all':{
+            addtodom(todos)
+            break;
+        }
+        case 'completed':{
+            const filtertodo=todos.filter((t)=>(t.isCompleted))
+            console.log(filtertodo)
+            addtodom(filtertodo)
+            break;
+        }
+        case 'uncompleted':{
+            const filtertodo=todos.filter((t)=>(!t.isCompleted))
+            console.log(filtertodo)
+            addtodom(filtertodo)
+            break;
+
+        }
+        default: addtodom(todos)
+    }
+
+}
+
+
+function taskremove(e){
+    e.preventDefault();
+    const btnid= Number(e.target.dataset.todoId);
+    const filterded=todos.filter((t)=>(t.id!==btnid))
+    todos=filterded
+    addtodom(todos)
+}
+
+
+
+function taskcheck(e){
+    e.preventDefault();
+    const btnid= Number(e.target.dataset.todoId);
+    const todo = todos.find((t)=>(t.id===btnid))
+    todo.isCompleted=!todo.isCompleted;
+    console.log(todos)
+    addtodom(todos)
+}
+
+
 
 
 

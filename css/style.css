@@ -58,6 +58,13 @@ textarea{
     resize: none;
 }
 
+.completed{
+    color: green;
+    text-decoration: line-through;
+    opacity: 0.5;
+
+}
+
 
 
 header{
@@ -149,3 +156,4 @@ select{
 .list__li .remove{
     background-color: #570202;
 }
+
