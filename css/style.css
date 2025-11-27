@@ -9,7 +9,7 @@
 /*root Variable*/
 :root {
     --color--primary: #570357;
-    --color--secondary: #032a55;
+    --color--secondary: #d648e1;
     --color--white: #ffffff;
     --color--text: #000025;
 }
@@ -125,7 +125,11 @@ select{
     flex-direction: column;
     gap: 1rem;
     align-items: center;
+    overflow: auto;
 
+}
+
+.list::-webkit-scrollbar {
 }
 
 .list__li{
@@ -150,10 +154,10 @@ select{
 }
 
 .list__li .check{
-    background-color: #026002;
+    background-color: #15b315;
 }
 
 .list__li .remove{
-    background-color: #570202;
+    background-color: #bc1717;
 }
 

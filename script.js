@@ -1,4 +1,5 @@
 let todos=[]
+let default_value='all'
 
 const todoinput = document.querySelector('.input');
 const todoform = document.querySelector('.add__form');
@@ -7,7 +8,10 @@ const sort = document.querySelector('.filter-todos');
 
 
 todoform.addEventListener('submit', addf )
-sort.addEventListener('change', sortchange)
+sort.addEventListener('change', (e)=>{
+    default_value = e.target.value;
+    sortchange()
+})
 
 
 
@@ -24,9 +28,7 @@ function addf(e){
     }
     todos.push(newtodos);
 
-
-
-    addtodom(todos)
+    sortchange(todos)
 
 
     todoinput.value = '';
@@ -61,10 +63,8 @@ function addtodom(todos){
 
 
 
-function sortchange(e){
-    // e.preventDefault();
-    let content = e.target.value;
-    switch (content){
+function sortchange(){
+    switch (default_value){
         case 'all':{
             addtodom(todos)
             break;
@@ -91,9 +91,9 @@ function sortchange(e){
 function taskremove(e){
     e.preventDefault();
     const btnid= Number(e.target.dataset.todoId);
-    const filterded=todos.filter((t)=>(t.id!==btnid))
-    todos=filterded
-    addtodom(todos)
+    const filtered=todos.filter((t)=>(t.id!==btnid))
+    todos=filtered
+    sortchange(todos)
 }
 
 
@@ -103,8 +103,7 @@ function taskcheck(e){
     const btnid= Number(e.target.dataset.todoId);
     const todo = todos.find((t)=>(t.id===btnid))
     todo.isCompleted=!todo.isCompleted;
-    console.log(todos)
-    addtodom(todos)
+    sortchange(todos)
 }
 
 
